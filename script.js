@@ -4,7 +4,7 @@ const tokenId = urlParams.get('tokenId');
 
 document.getElementById("base-image").style.backgroundImage = "url(" + "https://design-5k.github.io/otlw-test-armodels/" + tokenId + ".jpg";
 const sv_url = "https://design-5k.github.io/otlw-test-armodels/" + tokenId + ".glb";
-const ios_url = "https://gateway.pinata.cloud/ipfs/QmZVfMvxek9E6yJ2Yw4hb81vxZcXz88cVxWLgoM3NQ467S/" + tokenId + ".usdc";
+const ios_url = "https://design-5k.github.io/otlw-test-armodels/" + tokenId + ".usdz";
 const ar_button = document.getElementById('ar-button');
 ar_button.setAttribute("src", sv_url);
 ar_button.setAttribute("ios-src", ios_url);
@@ -75,42 +75,8 @@ const initializeArButton = (button) => {
         console.error("Invalid ios-src in <ar-button>: " + button);
         return;
       }
-
-      const applePayButtonType = button.getAttribute("applepay-button-type");
-      const checkoutTitle = button.getAttribute("checkout-title");
-      const checkoutSubtitle = button.getAttribute("checkout-subtitle");
-      const price = button.getAttribute("price");
-      const callToAction = button.getAttribute("call-to-action");
-      const customBanner = button.getAttribute("custom-banner");
-      const customHeight = button.getAttribute("custom-height");
-      const noScale = button.getAttribute("no-scale");
-
-      let href = `${iosSrc}#`;
-
-      if (applePayButtonType) {
-        href += `&applePayButtonType=${encodeURIComponent(applePayButtonType)}`;
-      }
-      if (checkoutTitle) {
-        href += `&checkoutTitle=${encodeURIComponent(checkoutTitle)}`;
-      }
-      if (checkoutSubtitle) {
-        href += `&checkoutSubtitle=${encodeURIComponent(checkoutSubtitle)}`;
-      }
-      if (price) {
-        href += `&price=${encodeURIComponent(price)}`;
-      }
-      if (callToAction) {
-        href += `&callToAction=${encodeURIComponent(callToAction)}`;
-      }
-      if (customBanner) {
-        href += `&custom=${encodeURIComponent(customBanner)}`;
-      }
-      if (customHeight) {
-        href += `&customHeight=${encodeURIComponent(customHeight)}`;
-      }
-      if (noScale != null) {
-        href += `&allowsContentScaling=0`;
-      }
+      
+      let href = ios_url;
 
       activateAR(href, button, true);
     });
@@ -161,20 +127,19 @@ const initializeArButton = (button) => {
   else {
 
     // No AR supported on current system, hide the button or sets a fallback url
-    /*button.setAttribute("ar", "unsupported");
+    button.setAttribute("ar", "unsupported");
     button.dispatchEvent(new CustomEvent("initialized", { detail: "unsupported" }));
     if (button.getAttribute("show-if-unsupported") != null) {
       button.addEventListener("click", () => {
         const fallbackUrl = button.getAttribute("fallback-url");
         if (fallbackUrl) {
-          activateAR(encodeURIComponent(fallbackUrl));
+          activateAR(fallbackUrl, button, false);
         }
       });
     } else {
       button.style.display = "none";
-    }*/
+    }
     console.error("Unsupported");
-    removeAR();
   }
 };
 
