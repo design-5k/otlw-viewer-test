@@ -129,16 +129,9 @@ const initializeArButton = (button) => {
     // No AR supported on current system, hide the button or sets a fallback url
     button.setAttribute("ar", "unsupported");
     button.dispatchEvent(new CustomEvent("initialized", { detail: "unsupported" }));
-    if (button.getAttribute("show-if-unsupported") != null) {
       button.addEventListener("click", () => {
-        const fallbackUrl = button.getAttribute("fallback-url");
-        if (fallbackUrl) {
-          activateAR(fallbackUrl, button, false);
-        }
+        window.open("https://www.projekt-outlaw.xyz/", "_blank");
       });
-    } else {
-      button.style.display = "none";
-    }
     console.error("Unsupported");
   }
 };
