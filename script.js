@@ -2,7 +2,7 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const tokenId = urlParams.get('tokenId');
 
-document.getElementById("base-image").style.backgroundImage = "url(" + "https://gateway.pinata.cloud/ipfs/QmQX9FFbtefLmn6BH75EtDVk7iqsF5xwD8MWuyQxYU2on6/" + tokenId + ".jpg";
+document.getElementById("base-image").style.backgroundImage = "url(" + "https://design-5k.github.io/otlw-test-armodels/" + tokenId + ".jpg";
 const sv_url = "https://design-5k.github.io/otlw-test-armodels/" + tokenId + ".glb";
 const ios_url = "https://gateway.pinata.cloud/ipfs/QmZVfMvxek9E6yJ2Yw4hb81vxZcXz88cVxWLgoM3NQ467S/" + tokenId + ".usdc";
 const ar_button = document.getElementById('ar-button');
